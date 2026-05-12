@@ -94,6 +94,7 @@
                         <ComboBoxItem Content="WinUI Dark" />
                         <ComboBoxItem Content="GitHub Light" />
                         <ComboBoxItem Content="GitHub Dark" />
+                        <ComboBoxItem Content="Dracula" />
                     </ComboBox>
 
                     <TextBox x:Name="BodyFontBox" Header="Body font" Text="Segoe UI" TextChanged="OnThemeValueChanged" />
@@ -116,6 +117,12 @@
                     <Slider x:Name="H5Weight" Header="H5 weight" Minimum="100" Maximum="900" StepFrequency="100" Value="600" ValueChanged="OnThemeSliderChanged" />
                     <Slider x:Name="H6Weight" Header="H6 weight" Minimum="100" Maximum="900" StepFrequency="100" Value="600" ValueChanged="OnThemeSliderChanged" />
 
+                    <TextBlock Text="Heading Borders" FontWeight="SemiBold" />
+                    <TextBox x:Name="HeadingBorderBox" Header="Heading border" Text="#50000000" TextChanged="OnThemeValueChanged" />
+                    <Slider x:Name="H1BorderThickness" Header="H1 border thickness" Minimum="0" Maximum="4" Value="0" ValueChanged="OnThemeSliderChanged" />
+                    <Slider x:Name="H2BorderThickness" Header="H2 border thickness" Minimum="0" Maximum="4" Value="0" ValueChanged="OnThemeSliderChanged" />
+                    <Slider x:Name="HeadingBorderPadding" Header="Heading border padding" Minimum="0" Maximum="0.6" StepFrequency="0.05" Value="0" ValueChanged="OnThemeSliderChanged" />
+
                     <TextBlock Text="Spacing" FontWeight="SemiBold" />
                     <Slider x:Name="HeadingBefore" Header="Heading before" Minimum="0" Maximum="40" Value="16" ValueChanged="OnThemeSliderChanged" />
                     <Slider x:Name="HeadingAfter" Header="Heading after" Minimum="0" Maximum="24" Value="6" ValueChanged="OnThemeSliderChanged" />
@@ -134,6 +141,7 @@
                     <TextBox x:Name="BlockquoteBackgroundBox" Header="Blockquote background" Text="#08000000" TextChanged="OnThemeValueChanged" />
                     <TextBox x:Name="TableBorderBox" Header="Table border" Text="#50000000" TextChanged="OnThemeValueChanged" />
                     <TextBox x:Name="TableHeaderBackgroundBox" Header="Table header background" Text="#0A000000" TextChanged="OnThemeValueChanged" />
+                    <TextBox x:Name="TableRowAlternateBackgroundBox" Header="Table alternate row" Text="#00000000" TextChanged="OnThemeValueChanged" />
                     <TextBox x:Name="HrStrokeBox" Header="Rule stroke" Text="#78000000" TextChanged="OnThemeValueChanged" />
                     <Slider x:Name="CodeBorderThickness" Header="Code border thickness" Minimum="0" Maximum="4" Value="0" ValueChanged="OnThemeSliderChanged" />
                     <Slider x:Name="CodeCornerRadius" Header="Code corner radius" Minimum="0" Maximum="18" Value="6" ValueChanged="OnThemeSliderChanged" />

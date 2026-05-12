@@ -30,6 +30,12 @@ public class MarkdownTheme
 
     public double HeadingSpacingAfter { get; set; } = 6;
 
+    public Brush HeadingBorder { get; set; } = Solid("#50000000");
+
+    public double[] HeadingBorderThicknesses { get; set; } = [0, 0, 0, 0, 0, 0];
+
+    public double HeadingBorderPaddingEm { get; set; }
+
     public double ParagraphSpacing { get; set; } = 8;
 
     public double BlockSpacing { get; set; } = 10;
@@ -43,6 +49,16 @@ public class MarkdownTheme
     public Brush CodeBackground { get; set; } = Solid("#14000000");
 
     public Brush CodeForeground { get; set; } = Solid("#FF24292F");
+
+    public Brush CodeKeywordForeground { get; set; } = Solid("#FF8957E5");
+
+    public Brush CodeStringForeground { get; set; } = Solid("#FF0A3069");
+
+    public Brush CodeCommentForeground { get; set; } = Solid("#FF6E7781");
+
+    public Brush CodeNumberForeground { get; set; } = Solid("#FF0550AE");
+
+    public Brush CodePropertyForeground { get; set; } = Solid("#FF953800");
 
     public Brush CodeBorder { get; set; } = Solid("#00000000");
 
@@ -64,6 +80,8 @@ public class MarkdownTheme
 
     public Brush TableHeaderBackground { get; set; } = Solid("#0A000000");
 
+    public Brush TableRowAlternateBackground { get; set; } = Solid("#00000000");
+
     public Brush HrStroke { get; set; } = Solid("#78000000");
 
     public double MaxImageWidth { get; set; } = 720;
@@ -80,11 +98,17 @@ public class MarkdownTheme
         Foreground = Solid("#FFF3F3F3"),
         CodeBackground = Solid("#26FFFFFF"),
         CodeForeground = Solid("#FFF3F3F3"),
+        CodeKeywordForeground = Solid("#FFC586C0"),
+        CodeStringForeground = Solid("#FFCE9178"),
+        CodeCommentForeground = Solid("#FF6A9955"),
+        CodeNumberForeground = Solid("#FFB5CEA8"),
+        CodePropertyForeground = Solid("#FF9CDCFE"),
         CodeBorder = Solid("#22FFFFFF"),
         CodeBorderThickness = 1,
         BlockquoteAccent = Solid("#FF8EA6CF"),
         BlockquoteBackground = Solid("#10FFFFFF"),
         LinkForeground = Solid("#FF70B2FF"),
+        HeadingBorder = Solid("#5AFFFFFF"),
         TableBorder = Solid("#5AFFFFFF"),
         TableHeaderBackground = Solid("#12FFFFFF"),
         HrStroke = Solid("#82FFFFFF")
@@ -94,10 +118,25 @@ public class MarkdownTheme
     {
         BodyFont = new FontFamily("-apple-system, BlinkMacSystemFont, Segoe UI"),
         CodeFont = new FontFamily("ui-monospace, SFMono-Regular, SF Mono, Consolas"),
+        BodyFontSize = 16,
+        HeadingSizes = [32, 24, 20, 16, 14, 13.6],
+        HeadingSpacingBefore = 24,
+        HeadingSpacingAfter = 16,
+        HeadingBorder = Solid("#FFD1D9E0"),
+        HeadingBorderThicknesses = [1, 1, 0, 0, 0, 0],
+        HeadingBorderPaddingEm = 0.3,
+        ParagraphSpacing = 16,
+        BlockSpacing = 16,
+        ListSpacing = 16,
         Background = Solid("#FFFFFFFF"),
         Foreground = Solid("#FF1F2328"),
         CodeBackground = Solid("#0D818B98"),
         CodeForeground = Solid("#FF1F2328"),
+        CodeKeywordForeground = Solid("#FFCF222E"),
+        CodeStringForeground = Solid("#FF0A3069"),
+        CodeCommentForeground = Solid("#FF6E7781"),
+        CodeNumberForeground = Solid("#FF0550AE"),
+        CodePropertyForeground = Solid("#FF953800"),
         CodeBorder = Solid("#FFD0D7DE"),
         CodeBorderThickness = 0,
         BlockquoteAccent = Solid("#FFD0D7DE"),
@@ -105,6 +144,7 @@ public class MarkdownTheme
         LinkForeground = Solid("#FF0969DA"),
         TableBorder = Solid("#FFD0D7DE"),
         TableHeaderBackground = Solid("#FFF6F8FA"),
+        TableRowAlternateBackground = Solid("#FFF6F8FA"),
         HrStroke = Solid("#FFD8DEE4")
     };
 
@@ -112,10 +152,25 @@ public class MarkdownTheme
     {
         BodyFont = new FontFamily("-apple-system, BlinkMacSystemFont, Segoe UI"),
         CodeFont = new FontFamily("ui-monospace, SFMono-Regular, SF Mono, Consolas"),
+        BodyFontSize = 16,
+        HeadingSizes = [32, 24, 20, 16, 14, 13.6],
+        HeadingSpacingBefore = 24,
+        HeadingSpacingAfter = 16,
+        HeadingBorder = Solid("#FF3D444D"),
+        HeadingBorderThicknesses = [1, 1, 0, 0, 0, 0],
+        HeadingBorderPaddingEm = 0.3,
+        ParagraphSpacing = 16,
+        BlockSpacing = 16,
+        ListSpacing = 16,
         Background = Solid("#FF0D1117"),
         Foreground = Solid("#FFE6EDF3"),
         CodeBackground = Solid("#33A6A6A6"),
         CodeForeground = Solid("#FFE6EDF3"),
+        CodeKeywordForeground = Solid("#FFFF7B72"),
+        CodeStringForeground = Solid("#FFA5D6FF"),
+        CodeCommentForeground = Solid("#FF8B949E"),
+        CodeNumberForeground = Solid("#FF79C0FF"),
+        CodePropertyForeground = Solid("#FF7EE787"),
         CodeBorder = Solid("#FF30363D"),
         CodeBorderThickness = 0,
         BlockquoteAccent = Solid("#FF30363D"),
@@ -123,7 +178,42 @@ public class MarkdownTheme
         LinkForeground = Solid("#FF2F81F7"),
         TableBorder = Solid("#FF30363D"),
         TableHeaderBackground = Solid("#FF161B22"),
+        TableRowAlternateBackground = Solid("#FF161B22"),
         HrStroke = Solid("#FF21262D")
+    };
+
+    public static MarkdownTheme Dracula => new()
+    {
+        BodyFont = new FontFamily("Segoe UI"),
+        CodeFont = new FontFamily("Cascadia Mono, Consolas"),
+        BodyFontSize = 16,
+        HeadingSizes = [32, 24, 20, 16, 14, 13.6],
+        HeadingSpacingBefore = 24,
+        HeadingSpacingAfter = 16,
+        HeadingBorder = Solid("#FF44475A"),
+        HeadingBorderThicknesses = [1, 1, 0, 0, 0, 0],
+        HeadingBorderPaddingEm = 0.3,
+        ParagraphSpacing = 16,
+        BlockSpacing = 16,
+        ListSpacing = 16,
+        Background = Solid("#FF282A36"),
+        Foreground = Solid("#FFF8F8F2"),
+        CodeBackground = Solid("#FF44475A"),
+        CodeForeground = Solid("#FFF8F8F2"),
+        CodeKeywordForeground = Solid("#FFFF79C6"),
+        CodeStringForeground = Solid("#FFF1FA8C"),
+        CodeCommentForeground = Solid("#FF6272A4"),
+        CodeNumberForeground = Solid("#FFBD93F9"),
+        CodePropertyForeground = Solid("#FF50FA7B"),
+        CodeBorder = Solid("#FF6272A4"),
+        CodeBorderThickness = 0,
+        BlockquoteAccent = Solid("#FFBD93F9"),
+        BlockquoteBackground = Solid("#2244475A"),
+        LinkForeground = Solid("#FF8BE9FD"),
+        TableBorder = Solid("#FF44475A"),
+        TableHeaderBackground = Solid("#FF343746"),
+        TableRowAlternateBackground = Solid("#22343746"),
+        HrStroke = Solid("#FF44475A")
     };
 
     public static MarkdownTheme Light => WinUILight;
@@ -154,6 +244,9 @@ public class MarkdownTheme
             HeadingFontWeights = [.. HeadingFontWeights],
             HeadingSpacingBefore = HeadingSpacingBefore,
             HeadingSpacingAfter = HeadingSpacingAfter,
+            HeadingBorder = palette.HeadingBorder,
+            HeadingBorderThicknesses = [.. HeadingBorderThicknesses],
+            HeadingBorderPaddingEm = HeadingBorderPaddingEm,
             ParagraphSpacing = ParagraphSpacing,
             BlockSpacing = BlockSpacing,
             ListSpacing = ListSpacing,
@@ -161,6 +254,11 @@ public class MarkdownTheme
             Foreground = palette.Foreground,
             CodeBackground = palette.CodeBackground,
             CodeForeground = palette.CodeForeground,
+            CodeKeywordForeground = palette.CodeKeywordForeground,
+            CodeStringForeground = palette.CodeStringForeground,
+            CodeCommentForeground = palette.CodeCommentForeground,
+            CodeNumberForeground = palette.CodeNumberForeground,
+            CodePropertyForeground = palette.CodePropertyForeground,
             CodeBorder = palette.CodeBorder,
             CodeBorderThickness = palette.CodeBorderThickness,
             CodeCornerRadius = CodeCornerRadius,
@@ -171,6 +269,7 @@ public class MarkdownTheme
             LinkForeground = palette.LinkForeground,
             TableBorder = palette.TableBorder,
             TableHeaderBackground = palette.TableHeaderBackground,
+            TableRowAlternateBackground = palette.TableRowAlternateBackground,
             HrStroke = palette.HrStroke,
             MaxImageWidth = MaxImageWidth,
             CustomCss = CustomCss
@@ -192,9 +291,11 @@ public class MarkdownTheme
               --md-code-fg: {{CssColor(CodeForeground)}};
               --md-border: {{CssColor(TableBorder)}};
               --md-table-head-bg: {{CssColor(TableHeaderBackground)}};
+              --md-table-row-alt-bg: {{CssColor(TableRowAlternateBackground)}};
               --md-quote: {{CssColor(BlockquoteAccent)}};
               --md-quote-bg: {{CssColor(BlockquoteBackground)}};
               --md-rule: {{CssColor(HrStroke)}};
+              --md-heading-border: {{CssColor(HeadingBorder)}};
               --md-h1: {{HeadingSize(0)}}px;
               --md-h2: {{HeadingSize(1)}}px;
               --md-h3: {{HeadingSize(2)}}px;
@@ -207,6 +308,18 @@ public class MarkdownTheme
               --md-h4-weight: {{HeadingWeight(3)}};
               --md-h5-weight: {{HeadingWeight(4)}};
               --md-h6-weight: {{HeadingWeight(5)}};
+              --md-h1-border-width: {{CssPx(HeadingBorderThickness(0))}};
+              --md-h2-border-width: {{CssPx(HeadingBorderThickness(1))}};
+              --md-h3-border-width: {{CssPx(HeadingBorderThickness(2))}};
+              --md-h4-border-width: {{CssPx(HeadingBorderThickness(3))}};
+              --md-h5-border-width: {{CssPx(HeadingBorderThickness(4))}};
+              --md-h6-border-width: {{CssPx(HeadingBorderThickness(5))}};
+              --md-h1-border-padding: {{HeadingBorderPadding(0)}};
+              --md-h2-border-padding: {{HeadingBorderPadding(1)}};
+              --md-h3-border-padding: {{HeadingBorderPadding(2)}};
+              --md-h4-border-padding: {{HeadingBorderPadding(3)}};
+              --md-h5-border-padding: {{HeadingBorderPadding(4)}};
+              --md-h6-border-padding: {{HeadingBorderPadding(5)}};
               --md-heading-before: {{CssPx(HeadingSpacingBefore)}};
               --md-heading-after: {{CssPx(HeadingSpacingAfter)}};
               --md-paragraph-spacing: {{CssPx(ParagraphSpacing)}};
@@ -217,15 +330,16 @@ public class MarkdownTheme
               --md-code-radius: {{CssRadius(CodeCornerRadius)}};
               --md-inline-code-radius: {{CssRadius(InlineCodeCornerRadius)}};
               --md-blockquote-radius: {{CssRadius(BlockquoteCornerRadius)}};
+              --md-max-image-width: {{CssPx(MaxImageWidth)}};
             }
-            html, body { margin: 0; padding: 0; background: var(--md-bg); color: var(--md-fg); font: var(--md-font-size)/1.55 var(--md-font-body); }
+            html, body { margin: 0; padding: 0; background: var(--md-bg); color: var(--md-fg); font: var(--md-font-size)/1.5 var(--md-font-body); }
             body { overflow-wrap: anywhere; }
-            h1 { font-size: var(--md-h1); }
-            h2 { font-size: var(--md-h2); }
-            h3 { font-size: var(--md-h3); }
-            h4 { font-size: var(--md-h4); }
-            h5 { font-size: var(--md-h5); }
-            h6 { font-size: var(--md-h6); }
+            h1 { font-size: var(--md-h1); border-bottom: var(--md-h1-border-width) solid var(--md-heading-border); padding-bottom: var(--md-h1-border-padding); }
+            h2 { font-size: var(--md-h2); border-bottom: var(--md-h2-border-width) solid var(--md-heading-border); padding-bottom: var(--md-h2-border-padding); }
+            h3 { font-size: var(--md-h3); border-bottom: var(--md-h3-border-width) solid var(--md-heading-border); padding-bottom: var(--md-h3-border-padding); }
+            h4 { font-size: var(--md-h4); border-bottom: var(--md-h4-border-width) solid var(--md-heading-border); padding-bottom: var(--md-h4-border-padding); }
+            h5 { font-size: var(--md-h5); border-bottom: var(--md-h5-border-width) solid var(--md-heading-border); padding-bottom: var(--md-h5-border-padding); }
+            h6 { font-size: var(--md-h6); border-bottom: var(--md-h6-border-width) solid var(--md-heading-border); padding-bottom: var(--md-h6-border-padding); }
             h1 { font-weight: var(--md-h1-weight); }
             h2 { font-weight: var(--md-h2-weight); }
             h3 { font-weight: var(--md-h3-weight); }
@@ -233,20 +347,52 @@ public class MarkdownTheme
             h5 { font-weight: var(--md-h5-weight); }
             h6 { font-weight: var(--md-h6-weight); }
             h1, h2, h3, h4, h5, h6 { line-height: 1.25; margin: var(--md-heading-before) 0 var(--md-heading-after); }
-            h1:first-child, h2:first-child, h3:first-child { margin-top: 0; }
+            h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child { margin-top: 0; }
             p { margin: 0 0 var(--md-paragraph-spacing); }
             ul, ol { margin-top: 0; margin-bottom: var(--md-list-spacing); }
+            ul ul { list-style-type: circle; }
+            ul ul ul { list-style-type: square; }
+            ol ol > li::marker { content: counter(list-item, lower-roman) ") "; }
+            ol ol ol > li::marker { content: counter(list-item, lower-alpha) ") "; }
+            li.task-list-item { list-style-type: none; }
+            li.task-list-item input[type="checkbox"] {
+              appearance: none;
+              -webkit-appearance: none;
+              box-sizing: border-box;
+              width: 1em;
+              height: 1em;
+              margin: 0 0.35em 0.2em -1.45em;
+              border: 1px solid var(--md-border);
+              border-radius: 3px;
+              background: var(--md-bg);
+              vertical-align: middle;
+              position: relative;
+              opacity: 1;
+            }
+            li.task-list-item input[type="checkbox"]:checked { background: var(--md-link); border-color: var(--md-link); }
+            li.task-list-item input[type="checkbox"]:checked::after {
+              content: "";
+              position: absolute;
+              left: 0.28em;
+              top: 0.08em;
+              width: 0.28em;
+              height: 0.55em;
+              border: solid white;
+              border-width: 0 0.14em 0.14em 0;
+              transform: rotate(45deg);
+            }
             a { color: var(--md-link); }
             pre, code { font-family: var(--md-font-code); }
-            code { background: var(--md-code-bg); border-radius: var(--md-inline-code-radius); padding: 0.1em 0.35em; }
-            pre { background: var(--md-code-bg); color: var(--md-code-fg); border: var(--md-code-border-width) solid var(--md-code-border); border-radius: var(--md-code-radius); overflow: auto; padding: 12px; margin: 0 0 var(--md-block-spacing); }
-            pre code { background: transparent; padding: 0; }
+            code { background: var(--md-code-bg); border-radius: var(--md-inline-code-radius); font-size: 85%; padding: 0.1em 0.35em; }
+            pre { background: var(--md-code-bg); color: var(--md-code-fg); border: var(--md-code-border-width) solid var(--md-code-border); border-radius: var(--md-code-radius); font-size: 85%; line-height: 1.45; overflow: auto; padding: 12px; margin: 0 0 var(--md-block-spacing); }
+            pre code { background: transparent; font-size: 100%; padding: 0; }
             blockquote { border-left: 4px solid var(--md-quote); background: var(--md-quote-bg); border-radius: var(--md-blockquote-radius); margin: 0 0 var(--md-block-spacing); padding: 4px 0 4px 12px; color: var(--md-fg); opacity: 0.78; }
-            table { border-collapse: collapse; width: 100%; margin: 0 0 var(--md-block-spacing); }
-            th, td { border: 1px solid var(--md-border); padding: 6px 8px; }
+            table { border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; margin: 0 0 var(--md-block-spacing); }
+            tr:nth-child(2n) { background: var(--md-table-row-alt-bg); }
+            th, td { border: 1px solid var(--md-border); padding: 6px 13px; }
             th { background: var(--md-table-head-bg); font-weight: 600; }
-            hr { border: 0; border-top: 1px solid var(--md-rule); opacity: 0.7; }
-            img { max-width: 100%; height: auto; }
+            hr { border: 0; border-top: 1px solid var(--md-rule); margin: var(--md-block-spacing) 0; opacity: 0.7; }
+            img { max-width: min(100%, var(--md-max-image-width)); height: auto; box-sizing: content-box; }
             {{CustomCss}}
             """;
     }
@@ -259,6 +405,18 @@ public class MarkdownTheme
     private ushort HeadingWeight(int index)
     {
         return HeadingFontWeights.Length > index ? HeadingFontWeights[index].Weight : FontWeights.SemiBold.Weight;
+    }
+
+    private double HeadingBorderThickness(int index)
+    {
+        return HeadingBorderThicknesses.Length > index ? HeadingBorderThicknesses[index] : 0;
+    }
+
+    private string HeadingBorderPadding(int index)
+    {
+        return HeadingBorderThickness(index) > 0
+            ? $"{HeadingBorderPaddingEm.ToString(global::System.Globalization.CultureInfo.InvariantCulture)}em"
+            : "0";
     }
 
     private static string CssPx(double value)

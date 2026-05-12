@@ -53,17 +53,14 @@ internal static class MarkdownRenderPlanner
             return true;
         }
 
-        if (ns.Contains("Footnotes", StringComparison.Ordinal) ||
-            ns.Contains("Mathematics", StringComparison.Ordinal) ||
-            ns.Contains("DefinitionLists", StringComparison.Ordinal) ||
+        if (ns.Contains("Mathematics", StringComparison.Ordinal) ||
             ns.Contains("Figures", StringComparison.Ordinal) ||
             ns.Contains("Diagrams", StringComparison.Ordinal))
         {
             return true;
         }
 
-        return name.Contains("Math", StringComparison.Ordinal) ||
-               name.Contains("Footnote", StringComparison.Ordinal);
+        return name.Contains("Math", StringComparison.Ordinal);
     }
 }
 

@@ -1,6 +1,5 @@
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
-using Windows.UI;
 using WinUI.Markdown.Themes;
 
 namespace WinUI.Markdown.Visitors;
@@ -18,15 +17,20 @@ internal sealed class NativeSyntaxHighlighter
     };
 
     private readonly Brush _plain;
-    private readonly Brush _keyword = Solid("#FF8957E5");
-    private readonly Brush _string = Solid("#FF0A3069");
-    private readonly Brush _comment = Solid("#FF6E7781");
-    private readonly Brush _number = Solid("#FF0550AE");
-    private readonly Brush _property = Solid("#FF953800");
+    private readonly Brush _keyword;
+    private readonly Brush _string;
+    private readonly Brush _comment;
+    private readonly Brush _number;
+    private readonly Brush _property;
 
     public NativeSyntaxHighlighter(MarkdownTheme theme)
     {
         _plain = theme.CodeForeground;
+        _keyword = theme.CodeKeywordForeground;
+        _string = theme.CodeStringForeground;
+        _comment = theme.CodeCommentForeground;
+        _number = theme.CodeNumberForeground;
+        _property = theme.CodePropertyForeground;
     }
 
     public void Append(InlineCollection target, string code, string? language)
@@ -209,13 +213,4 @@ internal sealed class NativeSyntaxHighlighter
         target.Add(new Run { Text = text, Foreground = brush });
     }
 
-    private static SolidColorBrush Solid(string value)
-    {
-        var parsed = uint.Parse(value.TrimStart('#'), global::System.Globalization.NumberStyles.HexNumber);
-        return new SolidColorBrush(Color.FromArgb(
-            (byte)(parsed >> 24),
-            (byte)(parsed >> 16),
-            (byte)(parsed >> 8),
-            (byte)parsed));
-    }
 }

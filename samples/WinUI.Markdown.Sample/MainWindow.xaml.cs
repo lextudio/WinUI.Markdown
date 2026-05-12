@@ -109,7 +109,7 @@ public sealed partial class MainWindow : Window
 
     private void OnThemeSliderChanged(object sender, Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        if (_isInitialized)
+        if (_isInitialized && !_isApplyingPreset)
         {
             QueueApplyTheme();
         }
@@ -129,6 +129,7 @@ public sealed partial class MainWindow : Window
             2 => MarkdownTheme.WinUIDark,
             3 => MarkdownTheme.GitHubLight,
             4 => MarkdownTheme.GitHubDark,
+            5 => MarkdownTheme.Dracula,
             _ => MarkdownTheme.System
         };
 
@@ -147,6 +148,9 @@ public sealed partial class MainWindow : Window
         ];
         theme.HeadingSpacingBefore = HeadingBefore.Value;
         theme.HeadingSpacingAfter = HeadingAfter.Value;
+        theme.HeadingBorder = BrushFromText(HeadingBorderBox.Text, theme.HeadingBorder);
+        theme.HeadingBorderThicknesses = [H1BorderThickness.Value, H2BorderThickness.Value, 0, 0, 0, 0];
+        theme.HeadingBorderPaddingEm = HeadingBorderPadding.Value;
         theme.ParagraphSpacing = ParagraphSpacing.Value;
         theme.BlockSpacing = BlockSpacing.Value;
         theme.ListSpacing = ListSpacing.Value;
@@ -164,6 +168,7 @@ public sealed partial class MainWindow : Window
         theme.BlockquoteCornerRadius = new CornerRadius(BlockquoteCornerRadius.Value);
         theme.TableBorder = BrushFromText(TableBorderBox.Text, theme.TableBorder);
         theme.TableHeaderBackground = BrushFromText(TableHeaderBackgroundBox.Text, theme.TableHeaderBackground);
+        theme.TableRowAlternateBackground = BrushFromText(TableRowAlternateBackgroundBox.Text, theme.TableRowAlternateBackground);
         theme.HrStroke = BrushFromText(HrStrokeBox.Text, theme.HrStroke);
         theme.MaxImageWidth = MaxImageWidth.Value;
         theme.CustomCss = CustomCssBox.Text;
@@ -182,9 +187,34 @@ public sealed partial class MainWindow : Window
             2 => MarkdownTheme.WinUIDark,
             3 => MarkdownTheme.GitHubLight,
             4 => MarkdownTheme.GitHubDark,
+            5 => MarkdownTheme.Dracula,
             _ => Viewer.ActualTheme == ElementTheme.Dark ? MarkdownTheme.WinUIDark : MarkdownTheme.WinUILight
         };
 
+        BodyFontBox.Text = preset.BodyFont.Source;
+        CodeFontBox.Text = preset.CodeFont.Source;
+        BodySize.Value = preset.BodyFontSize;
+        H1Size.Value = HeadingSize(preset, 0);
+        H2Size.Value = HeadingSize(preset, 1);
+        H3Size.Value = HeadingSize(preset, 2);
+        H4Size.Value = HeadingSize(preset, 3);
+        H5Size.Value = HeadingSize(preset, 4);
+        H6Size.Value = HeadingSize(preset, 5);
+        H1Weight.Value = HeadingWeight(preset, 0);
+        H2Weight.Value = HeadingWeight(preset, 1);
+        H3Weight.Value = HeadingWeight(preset, 2);
+        H4Weight.Value = HeadingWeight(preset, 3);
+        H5Weight.Value = HeadingWeight(preset, 4);
+        H6Weight.Value = HeadingWeight(preset, 5);
+        HeadingBefore.Value = preset.HeadingSpacingBefore;
+        HeadingAfter.Value = preset.HeadingSpacingAfter;
+        HeadingBorderBox.Text = HexFromBrush(preset.HeadingBorder);
+        H1BorderThickness.Value = HeadingBorderThickness(preset, 0);
+        H2BorderThickness.Value = HeadingBorderThickness(preset, 1);
+        HeadingBorderPadding.Value = preset.HeadingBorderPaddingEm;
+        ParagraphSpacing.Value = preset.ParagraphSpacing;
+        BlockSpacing.Value = preset.BlockSpacing;
+        ListSpacing.Value = preset.ListSpacing;
         BackgroundBox.Text = HexFromBrush(preset.Background);
         ForegroundBox.Text = HexFromBrush(preset.Foreground);
         CodeBackgroundBox.Text = HexFromBrush(preset.CodeBackground);
@@ -195,12 +225,29 @@ public sealed partial class MainWindow : Window
         BlockquoteBackgroundBox.Text = HexFromBrush(preset.BlockquoteBackground);
         TableBorderBox.Text = HexFromBrush(preset.TableBorder);
         TableHeaderBackgroundBox.Text = HexFromBrush(preset.TableHeaderBackground);
+        TableRowAlternateBackgroundBox.Text = HexFromBrush(preset.TableRowAlternateBackground);
         HrStrokeBox.Text = HexFromBrush(preset.HrStroke);
         CodeBorderThickness.Value = preset.CodeBorderThickness;
         CodeCornerRadius.Value = preset.CodeCornerRadius.TopLeft;
         InlineCodeCornerRadius.Value = preset.InlineCodeCornerRadius.TopLeft;
         BlockquoteCornerRadius.Value = preset.BlockquoteCornerRadius.TopLeft;
+        MaxImageWidth.Value = preset.MaxImageWidth;
         _isApplyingPreset = false;
+    }
+
+    private static double HeadingSize(MarkdownTheme theme, int index)
+    {
+        return theme.HeadingSizes.Length > index ? theme.HeadingSizes[index] : theme.BodyFontSize;
+    }
+
+    private static double HeadingWeight(MarkdownTheme theme, int index)
+    {
+        return theme.HeadingFontWeights.Length > index ? theme.HeadingFontWeights[index].Weight : 600;
+    }
+
+    private static double HeadingBorderThickness(MarkdownTheme theme, int index)
+    {
+        return theme.HeadingBorderThicknesses.Length > index ? theme.HeadingBorderThicknesses[index] : 0;
     }
 
     private SolidColorBrush ResolveSystemPreviewBackground()

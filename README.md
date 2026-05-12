@@ -12,7 +12,7 @@
 - `RenderMode.Native`: creates a WinUI element tree from a Markdig AST.
 - `RenderMode.WebView2`: renders Markdig HTML inside a lazy WebView2 host.
 - Shared themes for native and WebView2 rendering.
-- Built-in WinUI and GitHub light/dark themes.
+- Built-in WinUI, GitHub, and Dracula themes.
 - Link click events routed through `MarkdownLinkEventArgs`.
 - Sample playground app for testing render modes and theme properties.
 
@@ -81,18 +81,28 @@ Useful control options:
 
 ## Native Rendering
 
-Native mode currently supports:
+Native mode currently supports the common Markdown and GFM surface without creating WebView2. WebView2 mode renders Markdig HTML and is the fallback for raw HTML and richer extension output.
 
-- Paragraphs and headings
-- Bold, italic, strikethrough, inline code, and links
-- Ordered, unordered, nested, and task lists
-- Blockquotes
-- Code blocks with lightweight native highlighting
-- Tables with header styling
-- Images with configurable max width
-- Horizontal rules
-
-When content requires unsupported extensions such as raw HTML, math, footnotes, figures, diagrams, or definition lists, Auto mode falls back to WebView2.
+| Markdown element | Native renderer | WebView2 renderer |
+|---|---|---|
+| Paragraphs and line breaks | Supported | Supported |
+| ATX/setext headings | Supported | Supported |
+| Bold, italic, strikethrough | Supported | Supported |
+| Inline code | Supported | Supported |
+| Code blocks and fenced code | Supported, with lightweight highlighting | Supported |
+| Links and reference links | Supported | Supported |
+| Images | Supported, with configurable max width | Supported, with configurable max width |
+| Ordered lists | Supported, including nested roman/alpha markers | Supported |
+| Unordered lists | Supported, including nested bullet shapes | Supported |
+| Task lists | Supported as read-only WinUI checkboxes | Supported as read-only HTML checkboxes |
+| Blockquotes | Supported | Supported |
+| Tables | Supported | Supported |
+| Horizontal rules | Supported | Supported |
+| Footnotes | Supported | Supported |
+| Definition lists | Supported | Supported |
+| Raw HTML blocks/inlines | Not supported; Auto falls back | Supported |
+| Math extensions | Not supported; Auto falls back | Supported when emitted by Markdig |
+| Figures and diagrams | Not supported; Auto falls back | Supported when emitted by Markdig |
 
 ## Themes
 
@@ -103,6 +113,7 @@ Built-in themes:
 - `MarkdownTheme.WinUIDark`
 - `MarkdownTheme.GitHubLight`
 - `MarkdownTheme.GitHubDark`
+- `MarkdownTheme.Dracula`
 
 `MarkdownTheme.Light` and `MarkdownTheme.Dark` are aliases for WinUI light/dark.
 
