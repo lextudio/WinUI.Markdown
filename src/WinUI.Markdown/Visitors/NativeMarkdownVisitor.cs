@@ -62,6 +62,7 @@ public sealed class NativeMarkdownVisitor
         };
     }
 
+#if WINDOWS_APP_SDK
     private TextBlock RenderHeading(HeadingBlock heading)
     {
         var sizeIndex = Math.Clamp(heading.Level - 1, 0, _theme.HeadingSizes.Length - 1);
@@ -76,7 +77,21 @@ public sealed class NativeMarkdownVisitor
             Margin = new Thickness(0, heading.Level == 1 ? 0 : _theme.HeadingSpacingBefore, 0, _theme.HeadingSpacingAfter)
         };
     }
+#else
+    private RichTextBlock RenderHeading(HeadingBlock heading)
+    {
+        var sizeIndex = Math.Clamp(heading.Level - 1, 0, _theme.HeadingSizes.Length - 1);
+        var block = CreateRichTextBlock();
+        block.FontSize = _theme.HeadingSizes[sizeIndex];
+        block.FontWeight = HeadingWeight(sizeIndex);
+        block.Margin = new Thickness(0, heading.Level == 1 ? 0 : _theme.HeadingSpacingBefore, 0, _theme.HeadingSpacingAfter);
 
+        var paragraph = new Paragraph();
+        AppendInlines(paragraph.Inlines, heading.Inline);
+        block.Blocks.Add(paragraph);
+        return block;
+    }
+#endif
     private RichTextBlock RenderParagraph(ParagraphBlock paragraph, int skipLeadingCharacters = 0)
     {
         var block = CreateRichTextBlock();
