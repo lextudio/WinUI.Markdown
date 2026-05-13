@@ -147,7 +147,7 @@ public sealed class NativeMarkdownVisitor
     {
         var block = CreateRichTextBlock();
         block.Margin = new Thickness(0, 0, 0, paragraphSpacing ?? _theme.ParagraphSpacing);
-        var xamlParagraph = new Microsoft.UI.Xaml.Documents.Paragraph();
+        var xamlParagraph = new Paragraph();
         AppendInlines(xamlParagraph.Inlines, paragraph.Inline, skipLeadingCharacters, skipLeadingTaskList);
         block.Blocks.Add(xamlParagraph);
         return block;
@@ -220,7 +220,7 @@ public sealed class NativeMarkdownVisitor
     {
         var text = code.Lines.ToString();
         var block = CreateRichTextBlock();
-        var paragraph = new Microsoft.UI.Xaml.Documents.Paragraph();
+        var paragraph = new Paragraph();
         _syntaxHighlighter.Append(paragraph.Inlines, text, code is FencedCodeBlock fenced ? fenced.Info : null);
         block.Blocks.Add(paragraph);
         block.FontFamily = _theme.CodeFont;
@@ -376,7 +376,7 @@ public sealed class NativeMarkdownVisitor
         var block = CreateRichTextBlock();
         block.Margin = new Thickness(0);
         block.FontWeight = FontWeights.SemiBold;
-        var paragraph = new Microsoft.UI.Xaml.Documents.Paragraph();
+        var paragraph = new Paragraph();
         AppendInlines(paragraph.Inlines, term.Inline);
         block.Blocks.Add(paragraph);
         return block;
@@ -420,7 +420,7 @@ public sealed class NativeMarkdownVisitor
     private RichTextBlock RenderRawText(string text)
     {
         var block = CreateRichTextBlock();
-        block.Blocks.Add(new Microsoft.UI.Xaml.Documents.Paragraph { Inlines = { new Run { Text = text } } });
+        block.Blocks.Add(new Paragraph { Inlines = { new Run { Text = text } } });
         return block;
     }
 
